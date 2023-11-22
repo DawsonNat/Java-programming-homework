@@ -6,45 +6,52 @@ import uoa.assignment.character.Player;
 
 public class Map {
 
-    public String[][] layout;
-    public GameCharacter[] characters;
+    public String[][] layout; // 游戏地图的布局
+    public GameCharacter[] characters; // 游戏中的角色数组
 
+    // 构造函数，初始化地图和角色
     public Map(int height, int width) {
-        layout = new String[height][width]; // 初始化2D数组
-        characters = new GameCharacter[4]; // 初始化长度为4的角色数组
-        initialiseArray(); // 调用初始化数组的方法
-        createCharacters(); // 调用创建角色的方法
+        layout = new String[height][width]; // 初始化地图布局
+        characters = new GameCharacter[4]; // 初始化角色数组
+        initialiseArray(); // 初始化地图布局
+        createCharacters(); // 创建角色
     }
 
+    // 初始化地图布局的方法
     private void initialiseArray() {
         for (int i = 0; i < layout.length; i++) {
             for (int j = 0; j < layout[i].length; j++) {
-                layout[i][j] = "."; // 用'.'填充数组
+                layout[i][j] = "."; // 将地图布局填充为"."
             }
         }
     }
 
+    // 创建角色的方法
     private void createCharacters() {
-        characters[0] = new Player("Player"); // 创建一个 Player 实例并放入数组中
-        characters[0].setRow(layout.length - 1); // 将玩家放在底部
-        characters[0].setColumn(layout[0].length - 1); // 将玩家放在右侧
-        layout[layout.length - 1][layout[0].length - 1] = "*"; // 在布局数组中标记玩家位置为 '*'
+        // 创建玩家角色并设置其位置
+        characters[0] = new Player("Player");
+        characters[0].setRow(layout.length - 1);
+        characters[0].setColumn(layout[0].length - 1);
+        layout[layout.length - 1][layout[0].length - 1] = "*";
 
-        characters[1] = new Monster("Monster1"); // 创建第一个 Monster 实例并放入数组中
-        characters[1].setRow(0); // 将怪物1放在顶部
-        characters[1].setColumn(layout[0].length - 1); // 将怪物1放在右侧
-        layout[0][layout[0].length - 1] = "%"; // 在布局数组中标记怪物1位置为 '%'
+        // 创建怪物角色并设置其位置
+        characters[1] = new Monster("Monster1");
+        characters[1].setRow(0);
+        characters[1].setColumn(layout[0].length - 1);
+        layout[0][layout[0].length - 1] = "%";
 
-        characters[2] = new Monster("Monster2"); // 创建第二个 Monster 实例并放入数组中
-        characters[2].setRow(layout.length - 1); // 将怪物2放在底部
-        characters[2].setColumn(0); // 将怪物2放在左侧
-        layout[layout.length - 1][0] = "%"; // 在布局数组中标记怪物2位置为 '%'
+        characters[2] = new Monster("Monster2");
+        characters[2].setRow(layout.length - 1);
+        characters[2].setColumn(0);
+        layout[layout.length - 1][0] = "%";
 
-        characters[3] = new Monster("Monster3"); // 创建第三个 Monster 实例并放入数组中
-        characters[3].setRow(0); // 将怪物3放在顶部
-        characters[3].setColumn(0); // 将怪物3放在左侧
-        layout[0][0] = "%"; // 在布局数组中标记怪物3位置为 '%'
+        characters[3] = new Monster("Monster3");
+        characters[3].setRow(0);
+        characters[3].setColumn(0);
+        layout[0][0] = "%";
     }
+
+    // 打印地图布局的方法
     public void printLayout() {
         for (String[] row : layout) {
             for (String cell : row) {
@@ -54,15 +61,17 @@ public class Map {
         }
     }
 
+    // 获取玩家角色的方法
     public Player getPlayer() {
         for (GameCharacter character : characters) {
             if (character instanceof Player) {
                 return (Player) character;
             }
         }
-        return null; // 如果找不到玩家，返回null
+        return null; // 如果没有找到玩家角色，返回null
     }
 
+    // 获取怪物角色的方法
     public Monster[] getMonsters() {
         int count = 0;
         for (GameCharacter character : characters) {
@@ -81,10 +90,12 @@ public class Map {
         return livingMonsters;
     }
 
+    // 获取所有角色的方法
     public GameCharacter[] getCharacters() {
         return characters;
     }
 
+    // 获取地图布局字符串的方法
     public String getLayoutAsString() {
         StringBuilder layoutString = new StringBuilder();
         for (String[] row : layout) {
