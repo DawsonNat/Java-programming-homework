@@ -10,18 +10,13 @@ public class Monster extends GameCharacter {
 
 	public void hurtCharacter(GameCharacter character) {
 		if (!character.successfulDefense()) {
-			character.setHealth(character.getHealth() - 50); // 如果未成功防御，减少80点生命值
+			character.setHealth(character.getHealth() - 20); // 如果未成功防御，减少20点生命值
 		}
 	}
 
 	public boolean successfulDefense() {
 		Random random = new Random();
 		return random.nextBoolean(); // 以50%的概率返回true或false
-	}
-
-	@Override
-	public char getSymbol() {
-		return '%';
 	}
 
 	public String decideMove() {

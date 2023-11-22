@@ -1,11 +1,11 @@
 package uoa.assignment.game;
 
 import uoa.assignment.character.Monster;
+import uoa.assignment.game.Game;
 
 import java.util.Scanner;
 
 public class RunGame {
-
 	private static boolean gameOver = false;
 
 	public static void main(String[] args) {
@@ -24,7 +24,7 @@ public class RunGame {
 			round++; // 增加回合数
 
 			// 打印地图布局
-			game.getMap().printLayout();
+			System.out.println(game.getMap().getLayoutAsString());
 
 			// 打印角色健康状态
 			System.out.println("Health Player: " + game.getPlayer().getHealth());
@@ -34,3 +34,4 @@ public class RunGame {
 		}
 	}
 }
+

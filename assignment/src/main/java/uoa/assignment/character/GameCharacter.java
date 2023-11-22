@@ -43,7 +43,7 @@ public abstract class GameCharacter {
 	public void setColumn(int column) {
 		this.column = column;
 	}
-	public abstract char getSymbol();
+//	public abstract char getSymbol();
 
 	public String getName() {
 		return name;

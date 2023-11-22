@@ -24,14 +24,28 @@ public class Game {
         moveCharacter(input, map, map.getPlayer()); // 玩家移动
         System.out.println("Round 1");
         System.out.println(input); // 打印玩家移动方向
+        boolean allMonstersDead = true;
         for (Monster monster : map.getMonsters()) {
             if (monster.getHealth() > 0) {
+                allMonstersDead = false;
                 String monsterMove = monster.decideMove(); // 获取怪物移动方向
                 moveCharacter(monsterMove, map, monster); // 怪物移动
                 System.out.println(monster.getName() + " is moving " + monsterMove); // 打印怪物移动方向
             }
         }
-        map.printLayout(); // 打印地图布局到控制台
+        System.out.println(map.getLayoutAsString()); // 打印地图布局到控制台
+        System.out.println("Health Player: " + map.getPlayer().getHealth()); // 打印玩家健康状态
+        for (Monster monster : map.getMonsters()) {
+            System.out.println("Health " + monster.getName() + ": " + monster.getHealth()); // 打印怪物健康状态
+        }
+        if (allMonstersDead) {
+            System.out.println("YOU HAVE WON!");
+            return true;
+        }
+        if (map.getPlayer().getHealth() <= 0) {
+            System.out.println("YOU HAVE DIED!");
+            return true;
+        }
         return true;
     }
 

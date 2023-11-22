@@ -84,4 +84,15 @@ public class Map {
     public GameCharacter[] getCharacters() {
         return characters;
     }
+
+    public String getLayoutAsString() {
+        StringBuilder layoutString = new StringBuilder();
+        for (String[] row : layout) {
+            for (String cell : row) {
+                layoutString.append(cell);
+            }
+            layoutString.append("\n");
+        }
+        return layoutString.toString();
+    }
 }

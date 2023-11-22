@@ -309,10 +309,6 @@ public class GameTests
              @Override
              public boolean successfulDefense() {return true;}
 
-             @Override
-             public char getSymbol() {
-                 return 0;
-             }
          }
          try {
              Map map = new Map (3,4);
@@ -554,138 +550,139 @@ public class GameTests
     /**
      * Task 5.2
      */
-    /*@Test
+    @Test
     public void checkKillingMonster()
     {
-     try {   
+     try {
      Map map = new Map (10,10);
      Player player = (Player) map.characters[0];
      Monster monster = (Monster) map.characters[3];
-     
+
       player.row = 1;
       player.column = 0;
       map.layout [map.layout.length-1][map.layout[0].length-1] = ".";
       map.layout [1][0] = "*";
-      
+
       for (int i=0; i<1000;i++) {
-        GameLogic.moveCharacter ("up", map, player) ;  
+        GameLogic.moveCharacter ("up", map, player) ;
       }
-        
+
       assertTrue (monster.getHealth()<=0);
-       
-     
-            
+
+
+
      } catch (Exception | Error e) {
         fail(ANSI_WHITE_BACKGROUND +ANSI_BLACK+ "Something is not right. It seems that it is not possible to kill a monster...   Check Task 5.2" + ANSI_RESET + e);
     }
-    }*/
-    
+    }
+
      /**
      * Task 5.3
      */
-    /*@Test
+    @Test
     public void checkKillingPlayer()
     {
-     try {   
+     try {
      Map map = new Map (10,10);
      Player player = (Player) map.characters[0];
      Monster monster = (Monster) map.characters[3];
-     
+
       player.row = 1;
       player.column = 0;
       map.layout [map.layout.length-1][map.layout[0].length-1] = ".";
       map.layout [1][0] = "*";
-      
+
       for (int i=0; i<1000;i++) {
-        GameLogic.moveCharacter ("down", map, monster) ;  
+        GameLogic.moveCharacter ("down", map, monster) ;
       }
-        
+
       assertTrue (player.getHealth()<=0);
-       
-      
-     
-            
+
+
+
+
      } catch (Exception | Error e) {
         fail(ANSI_WHITE_BACKGROUND +ANSI_BLACK+ "Something is not right. It seems that monster can't kill the player...   Check Task 5.3" + ANSI_RESET + e);
     }
-    }*/
-    
-   
-    
+    }
+
+
+
     /**
      * Task 5.4
      */
-    /*@Test
+    @Test
     public void checkMarkingKilledMonster()
     {
-     try {   
+     try {
      Map map = new Map (10,10);
      Player player = (Player) map.characters[0];
      Monster monster = (Monster) map.characters[3];
-     
+
       player.row = 1;
       player.column = 0;
       map.layout [map.layout.length-1][map.layout[0].length-1] = ".";
       map.layout [1][0] = "*";
-      
+
       for (int i=0; i<1000;i++) {
-        GameLogic.moveCharacter ("up", map, player) ;  
+        GameLogic.moveCharacter ("up", map, player) ;
       }
-        
+
       assertTrue (monster.getHealth()<=0);
-      assertEquals ("x",map.layout [0][0]); 
-     
+      assertEquals ("x",map.layout [0][0]);
+
       String output = outContent.toString().trim();
       assertTrue (output.contains("Character already dead"));
       //System.setOut (originalOut);
-      //System.out.println (output); 
-            
+      //System.out.println (output);
+
      } catch (Exception | Error e) {
         fail(ANSI_WHITE_BACKGROUND +ANSI_BLACK+ "Something is not right. It seems that it is not possible to kill a monster...   Check Task 5.2" + ANSI_RESET + e);
     }
-    }*/
+    }
     
      /**
      * Task 5.5
      */
-    /*@Test
+    @Test
     public void checkEndGame()
     {
-     try {  
+     try {
      Game game = new Game (50,50);
-     
+
      Map map = game.getMap();
      Player player = (Player) map.characters[0];
      player.setHealth(0);
      boolean gameover = game.nextRound ("up");
-     
+
      String output = outContent.toString().trim();
      assertTrue (output.contains("YOU HAVE DIED!"));
-     
+
      assertTrue (gameover);
-     
+
      outContent.reset();
-    
-         
+
+
      Monster monster = (Monster) map.characters[1];
      monster.setHealth(0);
      Monster monster1 = (Monster) map.characters[2];
      monster1.setHealth(0);
      Monster monster2 = (Monster) map.characters[3];
      monster2.setHealth(0);
-     
-     gameover =  game.nextRound ("up");    
-         
+
+     gameover =  game.nextRound ("up");
+
       output = outContent.toString().trim();
      assertTrue (output.contains("YOU HAVE WON!"));
      assertTrue (gameover);
-     
-      
-       
-            
+
+
+
+
      } catch (Exception | Error e) {
         fail(ANSI_WHITE_BACKGROUND +ANSI_BLACK+ "Something is not right. It seems that it is not possible to win or lose the game.   Check Task 5.5" + ANSI_RESET + e);
     }
-    }*/
+    }
+
     
 }
